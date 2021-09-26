@@ -7,7 +7,7 @@ library("rpart")
 library("rpart.plot")
 
 
-setwd("M:\\" )  #establezco la carpeta donde voy a trabajar
+setwd("C:/Users/ar-mcosoleto/Downloads/Itba/(20212Q)CD03-Mineria-de-Datos-ComisiónB21" )  #establezco la carpeta donde voy a trabajar
 
 
 #cargo el dataset
@@ -15,7 +15,7 @@ dtrain  <- fread( "./datasetsOri/paquete_premium_202011.csv")
 dapply  <- fread( "./datasetsOri/paquete_premium_202101.csv")
 
 #uso esta semilla para los canaritos
-set.seed(10219)
+set.seed(102677)
 #agrego  30 canaritos
 for( i in 1:30)  dtrain[ , paste0("canarito", i ) :=  runif( nrow(dtrain))]
 for( i in 1:30)  dapply[ , paste0("canarito", i ) :=  runif( nrow(dapply))]

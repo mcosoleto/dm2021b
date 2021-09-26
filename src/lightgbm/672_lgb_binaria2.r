@@ -28,7 +28,7 @@ require("mlrMBO")
 #para poder usarlo en la PC y en la nube sin tener que cambiar la ruta
 #cambiar aqui las rutas en su maquina
 switch ( Sys.info()[['sysname']],
-         Windows = { directory.root  <-  "M:\\" },   #Windows
+         Windows = { directory.root  <-  "C:/Users/ar-mcosoleto/Downloads/Itba/(20212Q)CD03-Mineria-de-Datos-ComisiónB21" },   #Windows
          Darwin  = { directory.root  <-  "~/dm/" },  #Apple MAC
          Linux   = { directory.root  <-  "~/buckets/b1/" } #Google Cloud
        )
@@ -46,16 +46,16 @@ kBO_iter    <-  150   #cantidad de iteraciones de la Optimizacion Bayesiana
 
 #Aqui se cargan los hiperparametros
 hs <- makeParamSet( 
-         makeNumericParam("learning_rate",    lower= 0.01 , upper=    0.1),
+         makeNumericParam("learning_rate",    lower= 0.001 , upper=    0.1),
          makeNumericParam("feature_fraction", lower= 0.2  , upper=    1.0),
          makeIntegerParam("min_data_in_leaf", lower= 0    , upper= 8000),
          makeIntegerParam("num_leaves",       lower=16L   , upper= 1024L),
-         makeNumericParam("prob_corte",       lower= 0.020, upper=    0.055)
+         makeNumericParam("prob_corte",       lower= 0.010, upper=    0.055)
         )
 
-campos_malos  <- c( "mpasivos_margen" )   #aqui se deben cargar todos los campos culpables del Data Drifting
+campos_malos  <- c( "mpasivos_margen","mactivos_margen","mrentabilidad_annual" )   #aqui se deben cargar todos los campos culpables del Data Drifting
 
-ksemilla_azar  <- 102191  #Aqui poner la propia semilla
+ksemilla_azar  <- 102677  #Aqui poner la propia semilla
 #------------------------------------------------------------------------------
 #Funcion que lleva el registro de los experimentos
 
@@ -99,7 +99,7 @@ loguear  <- function( reg, arch=NA, folder="./work/", ext=".txt", verbose=TRUE )
 }
 #------------------------------------------------------------------------------
 
-PROB_CORTE  <- 0.025
+PROB_CORTE  <- 0.015 #en vez de 0.025
 
 fganancia_logistic_lightgbm   <- function(probs, datos) 
 {

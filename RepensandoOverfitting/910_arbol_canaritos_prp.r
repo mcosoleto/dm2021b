@@ -6,13 +6,13 @@ library("data.table")
 library("rpart")
 library("rpart.plot")
 
-setwd("M:" )  #establezco la carpeta donde voy a trabajar
+setwd("C:/Users/ar-mcosoleto/Downloads/Itba/(20212Q)CD03-Mineria-de-Datos-ComisiónB21" )  #establezco la carpeta donde voy a trabajar
 #cargo el dataset
 dataset  <- fread( "./datasetsOri/paquete_premium_202011.csv")
 
 
 #uso esta semilla para los canaritos
-set.seed(102191)
+set.seed(102677)
 
 #agrego una variable canarito, random distribucion uniforme en el intervalo [0,1]
 dataset[ ,  canarito1 :=  runif( nrow(dataset) ) ]
@@ -34,3 +34,4 @@ modelo  <- rpart(formula= "clase_ternaria ~ . -mactivos_margen -mpasivos_margen"
 pdf(file = "./work/arbol_canaritos.pdf", width=28, height=4)
 prp(modelo, extra=101, digits=5, branch=1, type=4, varlen=0, faclen=0)
 dev.off()
+
